@@ -1,0 +1,91 @@
+<style>
+    .login {
+        height: 280px;
+        width: 500px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 50px;
+        background-color: whitesmoke;
+    }
+
+    h1 {
+        color: #868787;
+        font-family: sans-serif;
+    }
+
+    input {
+        width: 300px;
+        height: 40px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding-left: 10px;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="login">
+                    <h3>LOGIN</h3>
+                    <form action="/trangchu1" method="get">
+                        <input type="email" name="emaillg" id="email" placeholder="Nhập email đăng nhập" required
+                            value={{email}}>
+                        <input type="password" name="passlg" id="pass" placeholder="Nhập mật khẩu" required
+                            value={{pass}}>
+                        <input style="background-color: #45a049;color: white;" type="submit" value="ĐĂNG NHẬP">
+
+                    </form>
+                      <p style="margin:10;color: red;">{{mess}}</p>
+                    <div>
+                        <button type="button" class="btn btn-danger" style="width: 300px;" data-bs-toggle="modal" data-bs-target="#myModaldk">
+                            Đăng ký
+                        </button>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal fade" id="myModaldk" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="wrapper">
+                                    <div class="container">
+                                        <div class="row justify-content-around">
+                                            <form class="col-md-6 bg-light p-3 my-3" method="get" action="xndk">
+                                                <h1 class="text-center text-uppercase h3 py-3">ĐĂNG KÝ TÀI KHOẢN</h1>
+
+                                                {{!-- <input type="file" value="avata" accept="image/*"> --}}
+                                                <div class="form-group">
+                                                    <label for="fullname"> Họ và tên </label>
+                                                    <input id="fullname" class="form-control" type="text"
+                                                        name="fullnameUS" required>
+                                                    <label for="email"> Email </label>
+                                                    <input id="email" class="form-control" type="email" name="emailUS"
+                                                        required>
+                                                    <label for="pass"> Mật khẩu </label>
+                                                    <input id="pass" class="form-control" type="password" name="passUS"
+                                                        required>
+                                                </div>
+                                                <div>
+
+                                                    <input style="margin-top: 15px;" type="submit" value="ĐĂNG KÝ"
+                                                        class="btn-primary btn btn-block">
+                                                </div>
+
+                                            </form>
+                                           
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+           
+                </div>
+            </div>
+
+        </div>
+    </div>

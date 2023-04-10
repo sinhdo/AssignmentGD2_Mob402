@@ -1,0 +1,254 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/trang chu">Shop Quần Áo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                List Products
+              </a>
+              <ul class="dropdown-menu">
+                {{#if showUser}}
+                <li><a class="dropdown-item" href="/trangchu">List Users</a></li>
+                <li><a class="dropdown-item" href="/products">List Products</a></li>
+                {{/if}}
+                <li><a class="dropdown-item" href="/dangnhap">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+         
+        </div>
+      </div>
+    </nav>
+  </div>
+  
+  <div class="row bg-secondary-subtle">
+    <h1>List Products</h1>
+    <h3 style="color: deepskyblue;">Xin chào !!!</h3>
+
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Products</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="container mt-1">
+  <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal2">
+    Add Product
+  </button>
+</div>
+<div class="row p-2">
+    <div class="d-flex flex-row mb-3">
+        <form class="col-11" method="get" action="filter1">
+            <div class="row">
+                <div class="col-5">
+                    <input name="idsp" type="text" class="form-control" placeholder="Tìm mã sản phẩm"
+                        aria-label="First name">
+                </div>
+                <div class="col-2 ">
+                    <button class="btn btn-primary" type="submit">
+                        <div class="d-flex flex-row">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="col" method="get" action="products">
+            <button class="btn btn-secondary" type="submit">
+                <div class="d-flex flex-row">
+                    <ion-icon name="refresh-circle-outline" class="me-2"></ion-icon>
+                    Tất cả
+                </div>
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<div class="modal" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Add Product</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form method="get" action="/add-products">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nhập link ảnh của sản phẩm</label>
+            <input value="" name="imgPR" type="text" class="form-control" id="img" required />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nhập mã sản phẩm</label>
+            <input value="" name="idPR" type="text" class="form-control" id="id" required />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nhập tên sản phẩm</label>
+            <input value="" name="namePR" type="text" class="form-control" id="name" required />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nhập giá sản phẩm
+            </label>
+            <input value="" name="pricePR" type="number" class="form-control" id="price" min="0" required />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nhập màu sắc sản phẩm
+            </label>
+            <input value="" name="colorPR" type="text" class="form-control" id="color" required />
+
+          </div>
+          <div class="mb-3">
+             <label for="exampleInputPassword1" class="form-label">Chọn tên người bán
+            </label>
+             <select name="salerPR">
+            {{#each dataUser}}
+            <option>{{hoten}}</option>
+            {{/each}}
+          </select>
+          </div>
+         
+
+          <button type="submit" class="btn btn-danger">Yes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- <input type="text" value={{myEmail}}>
+<input type="text" value={{myQuyen}}> --}}
+<div class="container-fluid">
+  <div class="row m-auto p-3">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col-2">STT</th>
+          <th scope="col">Mã sản phẩm</th>
+          <th scope="col">Ảnh</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Đơn giá</th>
+          <th scope="col">Màu sắc</th>
+          <th scope="col">Người bán</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#if dataProduct}}
+        {{#each dataProduct}}
+        <tr>
+          <th scope="row">{{@index}}</th>
+          <th>{{masp}}</th>
+          <td><img alt="" style="width: 70px;height: 70px;" src={{anh}} /></td>
+          <td>{{tensp}}</td>
+          <td>{{dongia}}</td>
+          <td>{{mausac}}</td>
+          <td>{{nguoiban}}</td>
+          <td>
+
+            <div class="container mt-3">
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal1{{_id}}">
+                Sửa
+              </button>
+            </div>
+            <!-- The Modal -->
+            <div class="modal" id="myModal1{{_id}}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Do You Want To Edit This
+                      Product</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="get" action="updatePR">
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Enter link image product</label>
+                        <input value={{anh}} name="imgPR" type="text" class="form-control" id="img" required />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Enter id product</label>
+                        <input value={{masp}} name="idPR" type="text" class="form-control" id="id" required />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Enter name product</label>
+                        <input name="namePR" type="text" class="form-control" id="name" required value={{tensp}} />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Enter price product</label>
+                        <input value={{dongia}} name="pricePR" type="number" class="form-control" id="price" min="0"
+                          required />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Enter color product</label>
+                        <input value={{mausac}} name="colorPR" type="text" class="form-control" id="color" required />
+                      </div>
+                      
+                     
+                      <div class="mb-3">
+                         <label for="exampleInputPassword1" class="form-label">Enter seller</label>
+                      <input type="text" value={{nguoiban}} name="salerPR" required>
+                      </div>
+                     
+                      <input name="idupPR" class="d-none" value={{_id}}>
+
+                      <button type="submit" class="btn btn-danger">Yes</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container mt-3">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal{{_id}}">
+                Xoá
+              </button>
+            </div>
+            <!-- The Modal -->
+            <div class="modal" id="myModal{{_id}}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Do You Want To Remove This
+                      Product</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-footer">
+                    <form method="get" action="deleteProduct">
+                      <input type="hidden" name="idProduct" value="{{_id}}" />
+                      <button type="submit" class="btn btn-danger">Yes</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {{/each}}
+         {{else}}
+                <tr>
+                    <p>Không có dữ liệu tìm kiếm.</p>
+                </tr>
+                {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>

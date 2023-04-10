@@ -1,0 +1,140 @@
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/trangchu">Shop Quần Áo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/trangchu">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                List User
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/trangchu">List Users</a></li>
+                                <li><a class="dropdown-item" href="/products">List Products</a></li>
+                                <li><a class="dropdown-item" href="/dangnhap">Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row bg-secondary-subtle">
+        <h1>List user</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Products</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row p-2">
+    <div class="d-flex flex-row mb-3">
+        <form class="col-11" method="get" action="filter">
+            <div class="row">
+                <div class="col-5">
+                    <input name="username" type="text" class="form-control" placeholder="Tên người dùng"
+                        aria-label="First name">
+                </div>
+                <div class="col-5">
+                    <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Last name">
+                </div>
+                <div class="col-2 ">
+                    <button class="btn btn-primary" type="submit">
+                        <div class="d-flex flex-row">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="col" method="get" action="trangchu">
+            <button class="btn btn-secondary" type="submit">
+                <div class="d-flex flex-row">
+                    <ion-icon name="refresh-circle-outline" class="me-2"></ion-icon>
+                    Tất cả
+                </div>
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row m-auto p-3">
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Họ Tên</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">PassWord</th>
+                    <th scope="col">Quyền</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if dataUser}}
+                {{#each dataUser}}
+                <tr>
+                    <th scope="row">{{@index}}</th>
+                    <td>{{hoten}}</td>
+                    <td>{{email}}</td>
+                    <td>{{matkhau}}</td>
+                    <td>{{quyen}}</td>
+                    <td>
+                        <form method="get" action="upUser">
+                            <button name="idEdit" value={{_id}} class="btn btn-info m-1" type="submit">Sửa</button>
+                        </form>
+                        <div class="container mt-3">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#myModal{{_id}}">
+                                Xoá
+                            </button>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal{{_id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Do You Want To Remove This
+                                            Product</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="get" action="deleteUser">
+                                            <input type="hidden" name="idUser" value="{{_id}}" />
+                                            <button type="submit" class="btn btn-danger">Yes</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+                {{else}}
+                <tr>
+                    <p>Không có dữ liệu tìm kiếm.</p>
+                </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>

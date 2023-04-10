@@ -14,24 +14,31 @@
 <body>
     <div class="container">
         <div class="row col-8 col-lg-5 m-auto mt-5 p-3 border border-primary border-4 bg-light-subtle rounded-3">
-            <h2 class="rounded text-center text-white p-2  bg-primary bg-gradient">Sửa nhân viên</h2>
-            <form method="post" action="upNV/update">
+            <h2 class="rounded text-center text-white p-2  bg-primary bg-gradient">Sửa User</h2>
+            <form method="get" action="upUser/update">
                 <div class="mb-3">
-                    <label for="exampleInputName" class="form-label">Tên nhân viên:</label>
-                    <input type="text" name="nameNV" class="form-control" id="exampleInputName" value={{nv.ten}}>
+                    <label for="exampleInputName" class="form-label">Tên User:</label>
+                    <input type="text" name="fullnameUS" class="form-control" id="exampleInputName" value={{user.hoten}} required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPrice" class="form-label">Địa chỉ:</label>
-                    <input type="text" name="addressNV" class="form-control" id="exampleInputPrice" value={{nv.diachi}}>
+                    <label  class="form-label">Email:</label>
+                    <input type="email" name="emailUS" class="form-control"  value={{user.email}} required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputColor" class="form-label">Lương</label>
-                    <input type="number" name="salaryNV" class="form-control" id="exampleInputColor" value={{nv.luong}}>
+                    <label  class="form-label">Pass</label>
+                    <input type="text" name="passUS" class="form-control" value={{user.matkhau}} required>
                 </div>
-                <input name="idNVien" class="d-none" value={{index}}>
+                <div class="mb-3">
+                    <select name="powerUS">
+                        <option value=0>Mời chọn quyền</option>
+                        <option value=0>Quyền User</option>
+                        <option value=1>Quyền Admin</option>
+                    </select>
+                </div>
+                <input name="idUser" class="d-none" value={{index}}>
                 <div class="row">
                     <div class="col-6">
-                        <a class="col-6" href="/">Hủy</a>
+                        <a class="col-6" href="/trangchu">Hủy</a>
                     </div>
                     <div class="col text-end">
                         <input type="submit" class="btn btn-primary" value="Xác nhận">
